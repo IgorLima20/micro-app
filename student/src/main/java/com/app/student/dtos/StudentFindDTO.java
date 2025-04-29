@@ -39,10 +39,14 @@ public class StudentFindDTO {
     public StudentFindDTO(Student student) {
         this.id = student.getId();
         this.name = student.getName();
-        this.classroms = student.getClassRoms()
-                .stream()
-                .map(ClassRomFindDTO::new)
-                .toList();
+        if (student.getClassRoms() == null) {
+            this.classroms = null;
+        } else {
+            this.classroms = student.getClassRoms()
+                             .stream()
+                             .map(ClassRomFindDTO::new)
+                             .toList();
+        }
     }
 
 }
